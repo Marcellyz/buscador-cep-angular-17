@@ -1,0 +1,33 @@
+<div class="container-form">
+  <div class="container-title">
+    <h2>Bem-vindo ao Buscador de CEP</h2>
+  </div>
+
+  <div class="container-form-search">
+    <form>
+      <input type="text" name="cep" id="cep" class="input-cep" placeholder="Digite o CEP" formControlName="cep">
+      <button class="btn-search" onclick=" observePreenchimentoCep()">Buscar</button>
+    </form>
+    <div class="container-form-response" [formGroup]="form">
+      <hr>
+      <form class="form-grid">
+        <div class="form-group">
+          <label>Logradouro:</label>
+          <input type="text" name="logradouro" formControlName="logradouro" id="logradouro">
+        </div>
+        <div class="form-group">
+          <label>Bairro:</label>
+          <input type="text" name="bairro" formControlName="bairro" id="bairro">
+        </div>
+        <div class="form-group">
+          <label>Cidade:</label>
+          <input type="text" name="cidade" formControlName="cidade" id="cidade">
+        </div>
+        <div class="form-group">
+          <label>Estado:</label>
+          <input type="text" name="estado" formControlName="estado" id="estado">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
