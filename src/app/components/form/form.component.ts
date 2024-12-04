@@ -1,60 +1,78 @@
+import { NgIf } from '@angular/common';
 import { ViaCepServiceService } from './../../service/via-cep-service.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { log } from 'console';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './form.component.html',
-  styleUrl: './form.component.scss'
+  styleUrls: ['./form.component.scss', './form.componet.responsive.scss'],
 })
-export class FormComponent  implements OnInit{
-
-
+export class FormComponent implements OnInit {
   form: FormGroup = new FormGroup({});
+  showAlert: boolean = false;
 
-  constructor(private fb: FormBuilder, private ViaCepService: ViaCepServiceService){}
+  constructor(
+    private fb: FormBuilder,
+    private ViaCepService: ViaCepServiceService
+  ) {}
 
   ngOnInit(): void {
-    this.initializeForm()
+    this.initializeForm();
+    this.observePreenchimentoCep();
+    this.buscarCep();
   }
 
-  initializeForm(){
+  initializeForm() {
     this.form = this.fb.group({
-      cep:['', Validators.required],
-      logradouro:[''],
-      bairro:[''],
-      cidade:[''],
-      estado:[''],
-    })
+      cep: ['', Validators.required],
+      logradouro: [{ value: '', disabled: true }],
+      bairro: [{ value: '', disabled: true }],
+      cidade: [{ value: '', disabled: true }],
+      estado: [{ value: '', disabled: true }],
+    });
   }
 
-  observePreenchimentoCep(){
-    this.form.get('cep')?.valueChanges.subscribe(value => {
-      if(value?.length == 8){
-          this.buscarCep();
+  observePreenchimentoCep() {
+    this.form.get('cep')?.valueChanges.subscribe((value) => {
+      if (value?.length === 8) {
+        this.buscarCep();
       }
-    })
+    });
   }
 
-  buscarCep(){
+  buscarCep() {
     const cep = this.form.get('cep')?.value;
-    this.ViaCepService.getEnderecoByCep(cep).subscribe(
-    {
-      next: (res)=> {
+    if (!cep || cep.length !== 8) {
+      this.showAlert = true;
+      return;
+    }
+
+    this.ViaCepService.getEnderecoByCep(cep).subscribe({
+      next: (res) => {
         this.form.patchValue({
           logradouro: res.logradouro,
           bairro: res.bairro,
           cidade: res.localidade,
-          estado: res.uf
-        })
-      },
-      error:()=> {
-          console.log("Não foi possivel verificar o CEP");
+          estado: res.uf,
+        });
 
-      }
-    })
+        this.showAlert = false;
+      },
+      error: () => {
+        console.error('Não foi possível verificar o CEP.');
+      },
+    });
+  }
+
+  closeAlert() {
+    this.showAlert = false;
   }
 }
