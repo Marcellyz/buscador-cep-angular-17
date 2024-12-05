@@ -1,5 +1,10 @@
 // Responsividade
 @media (max-width: 768px) {
+  .container-title h2 {
+    font-size: 2rem;
+    margin-top: 5rem;
+  }
+
   .container-form-search {
     flex-direction: column;
     gap: 10px;
@@ -19,7 +24,6 @@
   }
 
   .alert{
-    top: 10%;
     width: 90%;
     font-size: 0.85rem;
   }
@@ -28,6 +32,7 @@
 @media (max-width: 480px) {
   .container-title h2 {
     font-size: 1.5rem;
+    margin-top: 5rem;
   }
 
   .input-cep,
@@ -41,7 +46,6 @@
   }
 
   .alert{
-    top:5%;
     font-size: 0.8rem;
     width: 90%;
   }
