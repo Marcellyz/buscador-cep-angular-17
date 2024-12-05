@@ -49,7 +49,7 @@ Siga os passos abaixo para configurar o projeto em sua máquina local.
 Clone este repositório usando o comando:
 
 ```bash
-git clone https://github.com/Marcellyz/weather-app.git
+git clone https://github.com/Marcellyz/buscador-cep-angular-17.git
 ```
 ### 2. Navegue até o diretório do projeto
 
