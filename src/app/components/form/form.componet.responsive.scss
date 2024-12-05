@@ -2,7 +2,7 @@
 @media (max-width: 768px) {
   .container-form-search {
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
   }
 
   .form-grid {
@@ -16,7 +16,12 @@
   .input-cep {
     width: 50%;
     margin-left: 40px;
-    padding-right: px;
+  }
+
+  .alert{
+    top: 10%;
+    width: 90%;
+    font-size: 0.85rem;
   }
 }
 
@@ -33,5 +38,11 @@
   .input-cep {
     width: 50%;
     margin-left: 40px;
+  }
+
+  .alert{
+    top:5%;
+    font-size: 0.8rem;
+    width: 90%;
   }
 }

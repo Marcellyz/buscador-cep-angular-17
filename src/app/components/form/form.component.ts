@@ -16,8 +16,10 @@ import {
   styleUrls: ['./form.component.scss', './form.componet.responsive.scss'],
 })
 export class FormComponent implements OnInit {
+
   form: FormGroup = new FormGroup({});
-  showAlert: boolean = false;
+  cepInvalido:boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -26,13 +28,11 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
-    this.observePreenchimentoCep();
-    this.buscarCep();
   }
 
   initializeForm() {
     this.form = this.fb.group({
-      cep: ['', Validators.required],
+      cep: ['', Validators.minLength(8)],
       logradouro: [{ value: '', disabled: true }],
       bairro: [{ value: '', disabled: true }],
       cidade: [{ value: '', disabled: true }],
@@ -40,39 +40,25 @@ export class FormComponent implements OnInit {
     });
   }
 
-  observePreenchimentoCep() {
-    this.form.get('cep')?.valueChanges.subscribe((value) => {
-      if (value?.length === 8) {
-        this.buscarCep();
-      }
-    });
-  }
-
   buscarCep() {
     const cep = this.form.get('cep')?.value;
-    if (!cep || cep.length !== 8) {
-      this.showAlert = true;
-      return;
+    if (cep?.length == 8) {
+      this.ViaCepService.getEnderecoByCep(cep).subscribe({
+        next: (res) => {
+          this.form.patchValue({
+            logradouro: res.logradouro,
+            bairro: res.bairro,
+            cidade: res.localidade,
+            estado: res.uf,
+          });
+          this.cepInvalido = false;
+        },
+        error: () => {
+          this.cepInvalido = true;
+        }
+      });
+    }else {
+      this.cepInvalido = true;
     }
-
-    this.ViaCepService.getEnderecoByCep(cep).subscribe({
-      next: (res) => {
-        this.form.patchValue({
-          logradouro: res.logradouro,
-          bairro: res.bairro,
-          cidade: res.localidade,
-          estado: res.uf,
-        });
-
-        this.showAlert = false;
-      },
-      error: () => {
-        console.error('Não foi possível verificar o CEP.');
-      },
-    });
-  }
-
-  closeAlert() {
-    this.showAlert = false;
   }
 }

@@ -3,7 +3,7 @@
     <h2>Bem-vindo ao Buscador de CEP</h2>
   </div>
 
-  <div class="container-form-search" [formGroup]="form">
+  <div class="container-form-search" [formGroup]="form" (ngSubmit)="buscarCep()">
     <form>
       <input
         type="text"
@@ -55,6 +55,9 @@
           />
         </div>
       </form>
+      <div class="alert" *ngIf="cepInvalido">
+          <p>CEP Invalido! Por favor, verifique os digitos e tente novamente.</p>
+      </div>
     </div>
   </div>
 </div>
