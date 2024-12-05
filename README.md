@@ -1,6 +1,6 @@
 # Buscador de CEP 🏠✨
 
-Este projeto foi desenvolvido utilizando Angular na versão 17.3.6. Trata-se de um site que realiza consulta de Código de Endereçamento Postal(CEP), ele foi feita uma chamada de API da ViaCep, um webservice gratuito de alto desempenho para consulta de Código de Endereçamento Postal (CEP) do Brasil. 
+Este projeto foi desenvolvido utilizando Angular na versão 17.3.6. Trata-se de um site que realiza consulta de Código de Endereçamento Postal(CEP), nele foi feita uma chamada de API da ViaCep, um webservice gratuito de alto desempenho para consulta de Código de Endereçamento Postal (CEP) do Brasil. 
   
 O objetivo do site é fornecer uma consulta interativa e didática do CEP.
 ## 📍Stack utilizada
@@ -64,10 +64,6 @@ Use o npm para instalar as dependências necessárias:
 ```bash
 npm install
 ````
-ou 
-```bash
-npm i 
-````
 
 ### 4. Iniciar a aplicação localmente
 
@@ -87,6 +83,14 @@ ng build
 ````
 Os arquivos gerados estarão no diretório dist/. Você pode usar esses arquivos para hospedar a aplicação em um servidor web.
 
+## 🔮 Futuras Melhorias
+
+| **Área**             | **Descrição**                                                                 |
+|----------------------|------------------------------------------------------------------------------|                    
+| **📊 Validação avançada de CEPs**  | Adicionar validações personalizadas para garantir que o CEP fornecido esteja em um formato correto.                     |
+| **📊 Tema personalizável**    |  Implementar a possibilidade de alternar entre temas (claro e escuro).               |
+| **📂 Histórico de buscas recentes** | Adicionar uma seção para exibir os últimos CEPs pesquisados. |
+
 ## 🖇️ Contribuição ❤️💡📝🤩
 
 Contribuições são bem-vindas!❤️💡
@@ -94,4 +98,4 @@ Contribuições são bem-vindas!❤️💡
 Esse README pode ser ajustado de acordo com as necessidades específicas do seu projeto.
 
 ---
-⌨️ com ❤️ por [Marcellyz](https://gist.github.com/Marcellyz) 😊
+⌨️ com ❤️ por [Marcellyz](https://github.com/Marcellyz) 😊
