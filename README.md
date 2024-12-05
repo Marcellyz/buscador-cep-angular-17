@@ -39,7 +39,7 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu ambiente:
 
 - Node.js (versão 18.x ou superior)
 - npm (geralmente instalado junto com o Node.js)
-- Angular CLI versão 15 (ferramenta do Angular para criar componentes, classes e etc.)
+- Angular CLI versão 17 (ferramenta do Angular para criar componentes, classes e etc.)
 
 ## 🔧 Instalação
 
